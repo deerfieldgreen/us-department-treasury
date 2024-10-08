@@ -20,13 +20,22 @@ Throw an error if NOT EXIST
 GCP CLoud Run - scheduled 1AM NYC
 
 
-
+##############
 Reference dataset: QC
 https://www.quantconnect.com/data/us-treasury-yield-curve
+https://github.com/QuantConnect/Lean.DataSource.USTreasury/blob/master/USTreasuryYieldCurveDataAlgorithm.cs
+https://github.com/QuantConnect/Lean.DataSource.USTreasury/
+https://github.com/QuantConnect/Lean.DataSource.USTreasury/blob/master/USTreasuryYieldCurveRate.cs
 
 
 
 
+
+
+
+
+
+#################################
 Sample Data
 Date,"1 Mo","2 Mo","3 Mo","4 Mo","6 Mo","1 Yr","2 Yr","3 Yr","5 Yr","7 Yr","10 Yr","20 Yr","30 Yr"
 10/07/2024,5.00,4.87,4.77,4.67,4.45,4.24,3.99,3.89,3.86,3.92,4.03,4.37,4.30
@@ -45,3 +54,12 @@ Date,"1 Mo","2 Mo","3 Mo","4 Mo","6 Mo","1 Yr","2 Yr","3 Yr","5 Yr","7 Yr","10 Y
 09/18/2024,4.91,4.91,4.84,4.76,4.50,3.95,3.61,3.49,3.47,3.58,3.70,4.08,4.03
 09/17/2024,5.05,5.05,4.95,4.87,4.55,3.99,3.59,3.45,3.44,3.53,3.65,4.02,3.96
 09/16/2024,5.11,5.10,4.96,4.88,4.55,3.96,3.56,3.42,3.41,3.51,3.63,4.01,3.94
+
+
+
+
+
+
+
+
+![US Treasury-Daily Treasury Par Yield Curve Rates](images/Screenshot 2024-10-08 at 14.41.25.png)
