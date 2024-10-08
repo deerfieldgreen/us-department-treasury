@@ -3,10 +3,11 @@
 
 
 
-https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2024/all?type=daily_treasury_yield_curve&field_tdr_date_value=2024&page&_format=csv
+
+![Daily Treasury Par Yield Curve Rates - Website](https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2024/all?type=daily_treasury_yield_curve&field_tdr_date_value=2024&page&_format=csv)
 
 
-https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2024
+![Download Link for 2024 Data](https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2024)
 
 
 ## Nightly, download the Daily Treasury Par Yield Curve Rates into CSV
@@ -29,6 +30,12 @@ https://github.com/QuantConnect/Lean.DataSource.USTreasury/blob/master/USTreasur
 
 
 
+
+## Treasury Yield Curve Methodology
+![Methdology](https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics/treasury-yield-curve-methodology)
+
+
+Treasury Par Yield Curve Rates: These rates are commonly referred to as "Constant Maturity Treasury" rates, or CMTs. Yields are interpolated by the Treasury from the daily par yield curve. This curve, which relates the yield on a security to its time to maturity, is based on the closing market bid prices on the most recently auctioned Treasury securities in the over-the-counter market. These par yields are derived from indicative, bid-side market price quotations (not actual transactions) obtained by the Federal Reserve Bank of New York at or near 3:30 PM each trading day. The CMT yield values are read from the par yield curve at fixed maturities, currently 1, 2, 3, 4 and 6 months and 1, 2, 3, 5, 7, 10, 20, and 30 years. This method provides a par yield for a 10-year maturity, for example, even if no outstanding security has exactly 10 years remaining to maturity.
 
 
 
@@ -54,6 +61,11 @@ Date,"1 Mo","2 Mo","3 Mo","4 Mo","6 Mo","1 Yr","2 Yr","3 Yr","5 Yr","7 Yr","10 Y
 09/18/2024,4.91,4.91,4.84,4.76,4.50,3.95,3.61,3.49,3.47,3.58,3.70,4.08,4.03
 09/17/2024,5.05,5.05,4.95,4.87,4.55,3.99,3.59,3.45,3.44,3.53,3.65,4.02,3.96
 09/16/2024,5.11,5.10,4.96,4.88,4.55,3.96,3.56,3.42,3.41,3.51,3.63,4.01,3.94
+
+
+
+
+
 
 
 
