@@ -62,4 +62,4 @@ Date,"1 Mo","2 Mo","3 Mo","4 Mo","6 Mo","1 Yr","2 Yr","3 Yr","5 Yr","7 Yr","10 Y
 
 ## Screenshot
 
-![US Treasury-Daily Treasury Par Yield Curve Rates](images/Screenshot 2024-10-08 at 14.41.25.png)
+![US Treasury-Daily Treasury Par Yield Curve Rates](https://github.com/deerfieldgreen/us-department-treasury/blob/main/images/Screenshot%202024-10-08%20at%2014.41.25.png)
