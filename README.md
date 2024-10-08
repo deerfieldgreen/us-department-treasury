@@ -1,5 +1,5 @@
 # us-department-treasury
-#us-department-treasury - yield curves and such
+### us-department-treasury - yield curves and such
 
 
 
@@ -9,11 +9,11 @@ https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily
 https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2024
 
 
-##Nightly, download the Daily Treasury Par Yield Curve Rates into CSV
+## Nightly, download the Daily Treasury Par Yield Curve Rates into CSV
 
 committ to GitHub/data
 
-##Trap for calendar year - change the params of the URL
+## Trap for calendar year - change the params of the URL
 
 Throw an error if NOT EXIST
 
@@ -21,7 +21,7 @@ G##CP CLoud Run - scheduled 1AM NYC
 
 
 ##############
-##Reference dataset: QC
+## Reference dataset: QC
 https://www.quantconnect.com/data/us-treasury-yield-curve
 https://github.com/QuantConnect/Lean.DataSource.USTreasury/blob/master/USTreasuryYieldCurveDataAlgorithm.cs
 https://github.com/QuantConnect/Lean.DataSource.USTreasury/
@@ -36,7 +36,7 @@ https://github.com/QuantConnect/Lean.DataSource.USTreasury/blob/master/USTreasur
 
 
 #################################
-##Sample Data
+## Sample Data
 Date,"1 Mo","2 Mo","3 Mo","4 Mo","6 Mo","1 Yr","2 Yr","3 Yr","5 Yr","7 Yr","10 Yr","20 Yr","30 Yr"
 10/07/2024,5.00,4.87,4.77,4.67,4.45,4.24,3.99,3.89,3.86,3.92,4.03,4.37,4.30
 10/04/2024,5.01,4.88,4.73,4.68,4.45,4.20,3.93,3.84,3.81,3.88,3.98,4.33,4.26
@@ -61,5 +61,7 @@ Date,"1 Mo","2 Mo","3 Mo","4 Mo","6 Mo","1 Yr","2 Yr","3 Yr","5 Yr","7 Yr","10 Y
 
 
 ## Screenshot
+For: https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2024
+
 
 ![US Treasury-Daily Treasury Par Yield Curve Rates](https://github.com/deerfieldgreen/us-department-treasury/blob/main/images/Screenshot%202024-10-08%20at%2014.41.25.png)
