@@ -17,7 +17,7 @@ committ to GitHub/data
 
 Throw an error if NOT EXIST
 
-G##CP CLoud Run - scheduled 1AM NYC
+## GCP Cloud Run - scheduled 1AM NYC
 
 
 ##############
