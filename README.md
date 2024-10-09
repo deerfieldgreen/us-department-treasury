@@ -4,10 +4,14 @@
 
 
 
-[Daily Treasury Par Yield Curve Rates - Website](https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2024/all?type=daily_treasury_yield_curve&field_tdr_date_value=2024&page&_format=csv)
+### Daily Treasury Par Yield Curve Rates - Website
+https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2024
 
 
-[Download Link for 2024 Data](https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=2024)
+### Download Link for 2024 Data
+https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2024/all?type=daily_treasury_yield_curve&field_tdr_date_value=2024&page&_format=csv
+
+
 
 
 ## Nightly, download the Daily Treasury Par Yield Curve Rates into CSV
