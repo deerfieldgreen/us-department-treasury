@@ -40,6 +40,9 @@ Treasury Par Yield Curve Rates: These rates are commonly referred to as "Constan
 
 
 # Docker cli
+docker build -t gcr.io/dfg-analytics-insights-prod/us-department-treasury .
+docker push gcr.io/dfg-analytics-insights-prod/us-department-treasury
+
 
 
 
