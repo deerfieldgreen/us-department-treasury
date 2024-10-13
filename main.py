@@ -4,7 +4,9 @@ from github import Github, GithubException
 import base64
 import datetime
 import pytz
+from udt.utils import *
 import dotenv
+
 dotenv.load_dotenv()
 
 import logging
@@ -12,6 +14,7 @@ import logging
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 def read_and_encode_file(file_path, encode=True):
     """Read the file content and encode it in base64."""
@@ -25,7 +28,7 @@ def read_and_encode_file(file_path, encode=True):
 
 if __name__ == '__main__':
 
-    # Fetch and save daily treasury rates data
+    # 1. Fetch and save daily treasury rates data for current year
     timezone = pytz.timezone('US/Eastern')
     current_time = datetime.datetime.now(timezone)
     current_year = current_time.year
@@ -34,7 +37,8 @@ if __name__ == '__main__':
 
     df = dfs[0]
     work_dir = os.getcwd()
-    csv_path = os.path.join(work_dir, 'data', 'daily-treasury-rates.csv')
+    csv_path = os.path.join(work_dir, 'data', f'{current_year}-daily-treasury-rates.csv')
+    csv_dir = os.path.dirname(csv_path)
 
     rel_cols = [x for x in df.columns if 'Yr' in x or 'Mo' in x or 'Date' in x]
     df = df[rel_cols]
@@ -43,6 +47,11 @@ if __name__ == '__main__':
     df.sort_values('Date', inplace=True, ascending=False)
     df.to_csv(csv_path, index=False)
 
+    # 2. Merge all the years into one file
+    file_names = sort_file_names(csv_dir)
+    merged = merge_files(file_names, csv_dir)
+    all_years_path = os.path.join(csv_dir, 'daily-treasury-rates.csv')
+
     # Prepare github
     token = os.environ.get("GIT_TOKEN")
     g = Github(token)
@@ -50,7 +59,7 @@ if __name__ == '__main__':
         "deerfieldgreen/us-department-treasury"
     )  # Replace with your repo details
 
-    content = read_and_encode_file(csv_path, encode=False)
+    content = read_and_encode_file(all_years_path, encode=False)
     try:
         git_file = repo.get_contents(f"data/daily-treasury-rates.csv")
         logger.info(f"Found existing file: {git_file.path}")
@@ -73,3 +82,4 @@ if __name__ == '__main__':
             raise e
 
     logger.info(f"Pushed to Github")
+
