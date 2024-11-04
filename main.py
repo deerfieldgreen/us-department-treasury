@@ -52,6 +52,8 @@ if __name__ == '__main__':
     merged = merge_files(file_names, csv_dir)
     all_years_path = os.path.join(csv_dir, 'daily-treasury-rates.csv')
 
+    
+
     # Prepare github
     token = os.environ.get("GIT_TOKEN")
     g = Github(token)

@@ -16,7 +16,7 @@ https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily
 
 ## Nightly, download the Daily Treasury Par Yield Curve Rates into CSV
 
-committ to GitHub/data
+commit to GitHub/data
 
 ## Trap for calendar year - change the params of the URL
 
