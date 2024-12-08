@@ -6,6 +6,7 @@ import datetime
 import pytz
 from udt.utils import *
 import dotenv
+import pickle
 
 dotenv.load_dotenv()
 
@@ -26,8 +27,32 @@ def read_and_encode_file(file_path, encode=True):
         return content
 
 
-if __name__ == '__main__':
+def save_and_update_github(file_path, repo, github_path):
+    """Save file to GitHub and update if it already exists."""
+    content = read_and_encode_file(file_path, encode=False)
+    try:
+        git_file = repo.get_contents(github_path)
+        logger.info(f"Found existing file: {git_file.path}")
+        repo.update_file(
+            git_file.path,
+            f"Updated file for {datetime.datetime.now(pytz.timezone('US/Eastern')).date()}",
+            content,
+            git_file.sha,
+        )
+    except Exception as e:
+        if isinstance(e, GithubException) and e.status == 404:  # File not found
+            logger.info(f"File not found. Creating a new file: {github_path}")
+            repo.create_file(
+                github_path,
+                f"Created file for {datetime.datetime.now(pytz.timezone('US/Eastern')).date()}",
+                content,
+            )
+        else:
+            logger.error(f"An error occurred: {str(e)}")
+            raise e
 
+
+if __name__ == '__main__':
     # 1. Fetch and save daily treasury rates data for current year
     timezone = pytz.timezone('US/Eastern')
     current_time = datetime.datetime.now(timezone)
@@ -38,6 +63,7 @@ if __name__ == '__main__':
     df = dfs[0]
     work_dir = os.getcwd()
     csv_path = os.path.join(work_dir, 'data', f'{current_year}-daily-treasury-rates.csv')
+    pickle_path = os.path.join(work_dir, 'data', f'{current_year}-daily-treasury-rates.pkl')
     csv_dir = os.path.dirname(csv_path)
 
     rel_cols = [x for x in df.columns if 'Yr' in x or 'Mo' in x or 'Date' in x]
@@ -45,14 +71,24 @@ if __name__ == '__main__':
 
     df['Date'] = pd.to_datetime(df['Date'], format='%m/%d/%Y')
     df.sort_values('Date', inplace=True, ascending=False)
+    
+    # Save as CSV
     df.to_csv(csv_path, index=False)
+    
+    # Save as pickle
+    with open(pickle_path, 'wb') as f:
+        pickle.dump(df, f)
 
     # 2. Merge all the years into one file
     file_names = sort_file_names(csv_dir)
     merged = merge_files(file_names, csv_dir)
-    all_years_path = os.path.join(csv_dir, 'daily-treasury-rates.csv')
+    all_years_csv_path = os.path.join(csv_dir, 'daily-treasury-rates.csv')
+    all_years_pickle_path = os.path.join(csv_dir, 'daily-treasury-rates.pkl')
 
-    
+    # Save merged data as CSV and pickle
+    merged.to_csv(all_years_csv_path, index=False)
+    with open(all_years_pickle_path, 'wb') as f:
+        pickle.dump(merged, f)
 
     # Prepare github
     token = os.environ.get("GIT_TOKEN")
@@ -61,27 +97,10 @@ if __name__ == '__main__':
         "deerfieldgreen/us-department-treasury"
     )  # Replace with your repo details
 
-    content = read_and_encode_file(all_years_path, encode=False)
-    try:
-        git_file = repo.get_contents(f"data/daily-treasury-rates.csv")
-        logger.info(f"Found existing file: {git_file.path}")
-        repo.update_file(
-            git_file.path,
-            f"Updated file for {current_time.date()}",
-            content,
-            git_file.sha,
-        )
-    except Exception as e:
-        if isinstance(e, GithubException) and e.status == 404:  # File not found
-            logger.info(f"File not found. Creating a new file.")
-            repo.create_file(
-                f"data/daily-treasury-rates.csv",
-                f"Created file for {current_time.date()}",
-                content,
-            )
-        else:
-            logger.error(f"An error occurred: {str(e)}")
-            raise e
+    # Update or create files on GitHub
+    save_and_update_github(all_years_csv_path, repo, "data/daily-treasury-rates.csv")
+    save_and_update_github(all_years_pickle_path, repo, "data/daily-treasury-rates.pkl")
+    save_and_update_github(csv_path, repo, f"data/{current_year}-daily-treasury-rates.csv")
+    save_and_update_github(pickle_path, repo, f"data/{current_year}-daily-treasury-rates.pkl")
 
-    logger.info(f"Pushed to Github")
-
+    logger.info(f"All files pushed to Github")
